@@ -1,5 +1,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Apex Lift — Mock Product Data
+// Phase 2 | ใช้ Placeholder images (ต้องมี internet)
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const CATEGORIES = {
@@ -669,6 +670,295 @@ export const products = [
     isFeatured: false,
     isAvailable: true,
   },
+
+  // ── 13. Used Toyota 3FD30 Diesel 3T ──────────────────────────────────────────
+  {
+    id: 'APX-CB-30-D-U13',
+    sku: 'APX-CB-30-D-U13',
+    category: CATEGORIES.ENGINE_CB,
+    brand: 'Toyota',
+    model: '3FD30',
+    condition: CONDITIONS.USED,
+    year: 2017,
+    operatingHours: 6200,
+    name: {
+      th: 'โฟล์คลิฟท์ดีเซล Toyota 3FD30 มือสอง (3 ตัน)',
+      en: 'Toyota 3FD30 Used Diesel Forklift (3-Ton)',
+    },
+    price: 420000,
+    images: [img('toyota-used-1'), img('toyota-used-2'), img('toyota-used-3')],
+    inspection: {
+      passed: true,
+      points: 100,
+      date: '2024-11-15',
+      notes: { th: 'เปลี่ยนยางใหม่ทั้ง 4 เส้น เปลี่ยนน้ำมันเครื่องและฟิลเตอร์ครบ', en: 'All 4 tires replaced, engine oil and filters changed' },
+    },
+    warranty: { th: '3 เดือน ชิ้นส่วนหลัก', en: '3-month warranty on major components' },
+    specs: {
+      liftingCapacityKg: 3000,
+      loadCenterMm: 500,
+      liftHeightMm: 3000,
+      mastType: MAST_TYPES.TRIPLEX,
+      mastCollapsedHeightMm: 2080,
+      freeLiftMm: 150,
+      powerType: POWER_TYPES.DIESEL,
+      tireType: TIRE_TYPES.PNEUMATIC,
+      driveWheels: '4-wheel',
+      aisleWidthMm: 3800,
+      turningRadiusMm: 2350,
+      travelSpeedKmh: 18,
+      gradeabilityPct: 17,
+      overallLengthMm: 3950,
+      overallWidthMm: 1430,
+      weightKg: 4500,
+      environment: ['indoor', 'outdoor'],
+      coldRoomRated: false,
+      nonMarkingTire: false,
+      exProof: false,
+    },
+    features: {
+      th: ['ผ่านการตรวจสอบ 100 จุด', 'ยางใหม่ทั้ง 4 เส้น', 'รับประกัน 3 เดือน', 'ประหยัด 55% จากราคารถใหม่'],
+      en: ['100-point inspection passed', 'All 4 new tires', '3-month warranty', 'Save 55% vs new unit'],
+    },
+    suitableFor: {
+      th: ['โรงงานทั่วไป', 'Loading Dock', 'ยาร์ด', 'ธุรกิจ SME'],
+      en: ['General factory', 'Loading dock', 'Yard', 'SME business'],
+    },
+    isFeatured: true,
+    isAvailable: true,
+  },
+
+  // ── 14. Used Mitsubishi Electric 1.5T ─────────────────────────────────────
+  {
+    id: 'APX-CB-15-E-U14',
+    sku: 'APX-CB-15-E-U14',
+    category: CATEGORIES.ELECTRIC_CB,
+    brand: 'Mitsubishi',
+    model: 'FB15KT',
+    condition: CONDITIONS.USED,
+    year: 2020,
+    operatingHours: 3100,
+    name: {
+      th: 'โฟล์คลิฟท์ไฟฟ้า Mitsubishi FB15KT มือสอง (1.5 ตัน)',
+      en: 'Mitsubishi FB15KT Used Electric Forklift (1.5-Ton)',
+    },
+    price: 380000,
+    images: [img('mitsubishi-used-1'), img('mitsubishi-used-2')],
+    inspection: {
+      passed: true,
+      points: 100,
+      date: '2024-10-20',
+      notes: { th: 'แบตเตอรี่เหลือสุขภาพ 82% เปลี่ยนยางหน้าใหม่', en: 'Battery health 82%, front tires replaced' },
+    },
+    warranty: { th: '3 เดือน ชิ้นส่วนหลัก', en: '3-month warranty on major components' },
+    specs: {
+      liftingCapacityKg: 1500,
+      loadCenterMm: 500,
+      liftHeightMm: 3000,
+      mastType: MAST_TYPES.TRIPLEX,
+      mastCollapsedHeightMm: 2050,
+      freeLiftMm: 150,
+      powerType: POWER_TYPES.ELECTRIC,
+      batteryVoltage: 48,
+      batteryCapacityAh: 420,
+      tireType: TIRE_TYPES.CUSHION,
+      driveWheels: '4-wheel',
+      aisleWidthMm: 3400,
+      turningRadiusMm: 2050,
+      travelSpeedKmh: 14,
+      gradeabilityPct: 12,
+      overallLengthMm: 3350,
+      overallWidthMm: 1070,
+      weightKg: 2850,
+      environment: ['indoor'],
+      coldRoomRated: false,
+      nonMarkingTire: false,
+      exProof: false,
+    },
+    features: {
+      th: ['ชั่วโมงใช้งานน้อย เพียง 3,100 ชม.', 'Zero Emission เหมาะโกดังในร่ม', 'ผ่านตรวจสอบ 100 จุด', 'ราคาประหยัด 42% จากรถใหม่'],
+      en: ['Low hours — only 3,100hrs', 'Zero emission for indoor use', '100-point inspection passed', 'Save 42% vs new unit'],
+    },
+    suitableFor: {
+      th: ['โกดังในร่ม', 'ห้างสรรพสินค้า', 'โรงงานอาหาร', 'ธุรกิจขนาดกลาง'],
+      en: ['Indoor warehouse', 'Retail', 'Food factory', 'Mid-size business'],
+    },
+    isFeatured: true,
+    isAvailable: true,
+  },
+
+  // ── 15. Used TCM LPG 2T ───────────────────────────────────────────────────
+  {
+    id: 'APX-CB-20-L-U15',
+    sku: 'APX-CB-20-L-U15',
+    category: CATEGORIES.ENGINE_CB,
+    brand: 'TCM',
+    model: 'FG20N3',
+    condition: CONDITIONS.USED,
+    year: 2018,
+    operatingHours: 5500,
+    name: {
+      th: 'โฟล์คลิฟท์ LPG TCM FG20 มือสอง (2 ตัน)',
+      en: 'TCM FG20 Used LPG Forklift (2-Ton)',
+    },
+    price: 280000,
+    images: [img('tcm-used-1'), img('tcm-used-2')],
+    inspection: {
+      passed: true,
+      points: 100,
+      date: '2024-09-10',
+      notes: { th: 'เปลี่ยนยางใหม่ ปรับแต่งเครื่องยนต์ครบ พร้อมใช้งาน', en: 'New tires, full engine tune-up, work-ready' },
+    },
+    warranty: { th: '3 เดือน ชิ้นส่วนหลัก', en: '3-month warranty on major components' },
+    specs: {
+      liftingCapacityKg: 2000,
+      loadCenterMm: 500,
+      liftHeightMm: 3000,
+      mastType: MAST_TYPES.TRIPLEX,
+      mastCollapsedHeightMm: 1990,
+      freeLiftMm: 145,
+      powerType: POWER_TYPES.LPG,
+      tireType: TIRE_TYPES.CUSHION,
+      driveWheels: '4-wheel',
+      aisleWidthMm: 3600,
+      turningRadiusMm: 2100,
+      travelSpeedKmh: 17,
+      gradeabilityPct: 15,
+      overallLengthMm: 3680,
+      overallWidthMm: 1070,
+      weightKg: 3200,
+      environment: ['indoor', 'outdoor'],
+      coldRoomRated: false,
+      nonMarkingTire: false,
+      exProof: false,
+    },
+    features: {
+      th: ['LPG สะอาด เหมาะโรงงานมีหลังคา', 'ผ่านตรวจสอบ 100 จุด', 'ราคาดีที่สุดในคลาส', 'ประหยัด 60% จากรถใหม่'],
+      en: ['Clean LPG for covered facilities', '100-point inspection passed', 'Best price in class', 'Save 60% vs new unit'],
+    },
+    suitableFor: {
+      th: ['โรงงานขนาดเล็ก-กลาง', 'Loading & Unloading', 'คลังสินค้า', 'งบจำกัด'],
+      en: ['Small-to-mid factory', 'Loading & unloading', 'Warehouse', 'Budget-conscious buyer'],
+    },
+    isFeatured: false,
+    isAvailable: true,
+  },
+
+  // ── 16. Used Crown Reach Truck ────────────────────────────────────────────
+  {
+    id: 'APX-RT-14-E-U16',
+    sku: 'APX-RT-14-E-U16',
+    category: CATEGORIES.REACH_TRUCK,
+    brand: 'Crown',
+    model: 'RR 5200',
+    condition: CONDITIONS.USED,
+    year: 2019,
+    operatingHours: 4200,
+    name: {
+      th: 'Reach Truck Crown RR5200 มือสอง (1.4 ตัน)',
+      en: 'Crown RR5200 Used Reach Truck (1.4-Ton)',
+    },
+    price: 490000,
+    images: [img('reach-truck-used-1'), img('reach-truck-used-2')],
+    inspection: {
+      passed: true,
+      points: 100,
+      date: '2024-12-01',
+      notes: { th: 'เปลี่ยนแบตเตอรี่ใหม่ 100% ยางใหม่ทุกเส้น ระบบทำงานปกติ', en: 'Brand-new battery, all tires replaced, all systems nominal' },
+    },
+    warranty: { th: '3 เดือน ชิ้นส่วนหลัก', en: '3-month warranty on major components' },
+    specs: {
+      liftingCapacityKg: 1400,
+      loadCenterMm: 500,
+      liftHeightMm: 7800,
+      mastType: MAST_TYPES.TRIPLEX,
+      mastCollapsedHeightMm: 2150,
+      freeLiftMm: 900,
+      powerType: POWER_TYPES.ELECTRIC,
+      batteryVoltage: 48,
+      batteryCapacityAh: 560,
+      tireType: TIRE_TYPES.POLYURETHANE,
+      driveWheels: '3-wheel',
+      aisleWidthMm: 2700,
+      turningRadiusMm: 1550,
+      travelSpeedKmh: 11,
+      gradeabilityPct: 8,
+      overallLengthMm: 2750,
+      overallWidthMm: 1120,
+      weightKg: 3050,
+      environment: ['indoor'],
+      coldRoomRated: true,
+      nonMarkingTire: true,
+      exProof: false,
+    },
+    features: {
+      th: ['แบตเตอรี่ใหม่ 100% ก่อนส่งมอบ', 'ยกสูงได้ 7.8 เมตร', 'ทางเดินแคบ 2.7 เมตร', 'ประหยัด 45% จากรถใหม่'],
+      en: ['100% new battery before delivery', 'Lift height 7.8m', 'Works in 2.7m aisles', 'Save 45% vs new unit'],
+    },
+    suitableFor: {
+      th: ['High-Bay Warehouse', 'ห้องเย็น', 'โกดังทางเดินแคบ', 'E-commerce'],
+      en: ['High-bay warehouse', 'Cold storage', 'Narrow aisle warehouse', 'E-commerce'],
+    },
+    isFeatured: true,
+    isAvailable: true,
+  },
+
+  // ── 17. Used Nissan Diesel 2.5T ───────────────────────────────────────────
+  {
+    id: 'APX-CB-25-D-U17',
+    sku: 'APX-CB-25-D-U17',
+    category: CATEGORIES.ENGINE_CB,
+    brand: 'Nissan',
+    model: 'DF25',
+    condition: CONDITIONS.USED,
+    year: 2016,
+    operatingHours: 8800,
+    name: {
+      th: 'โฟล์คลิฟท์ดีเซล Nissan DF25 มือสอง (2.5 ตัน)',
+      en: 'Nissan DF25 Used Diesel Forklift (2.5-Ton)',
+    },
+    price: 195000,
+    images: [img('nissan-used-1'), img('nissan-used-2')],
+    inspection: {
+      passed: true,
+      points: 100,
+      date: '2024-08-05',
+      notes: { th: 'ซ่อมระบบไฮดรอลิก เปลี่ยนยางหลังใหม่ สภาพใช้งานได้ดี', en: 'Hydraulic repaired, rear tires replaced, serviceable condition' },
+    },
+    warranty: { th: '1 เดือน ชิ้นส่วนหลัก', en: '1-month warranty on major components' },
+    specs: {
+      liftingCapacityKg: 2500,
+      loadCenterMm: 500,
+      liftHeightMm: 3000,
+      mastType: MAST_TYPES.TRIPLEX,
+      mastCollapsedHeightMm: 2060,
+      freeLiftMm: 150,
+      powerType: POWER_TYPES.DIESEL,
+      tireType: TIRE_TYPES.PNEUMATIC,
+      driveWheels: '4-wheel',
+      aisleWidthMm: 3700,
+      turningRadiusMm: 2250,
+      travelSpeedKmh: 17,
+      gradeabilityPct: 16,
+      overallLengthMm: 3800,
+      overallWidthMm: 1200,
+      weightKg: 3900,
+      environment: ['indoor', 'outdoor'],
+      coldRoomRated: false,
+      nonMarkingTire: false,
+      exProof: false,
+    },
+    features: {
+      th: ['ราคาประหยัดสุดในคลาส', 'ผ่านตรวจสอบ 100 จุด', 'เหมาะงบจำกัด', 'ใช้งานได้ทั้ง ใน-นอกอาคาร'],
+      en: ['Best value price in class', '100-point inspection passed', 'Ideal for tight budgets', 'Indoor & outdoor capable'],
+    },
+    suitableFor: {
+      th: ['งบจำกัดมาก', 'งานไม่หนักมาก', 'ทดลองใช้', 'ธุรกิจ Startup'],
+      en: ['Very tight budget', 'Light-to-medium duty', 'Trial use', 'Startup business'],
+    },
+    isFeatured: false,
+    isAvailable: true,
+  },
 ]
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -678,6 +968,8 @@ export const getProductById = (id) => products.find(p => p.id === id)
 
 export const getProductsByCategory = (cat) =>
   cat ? products.filter(p => p.category === cat) : products
+
+export const getUsedProducts = () => products.filter(p => p.condition === CONDITIONS.USED)
 
 export const filterProducts = ({ category, condition, powerType, minCapacity, maxCapacity, mastType }) => {
   return products.filter(p => {
@@ -690,3 +982,21 @@ export const filterProducts = ({ category, condition, powerType, minCapacity, ma
     return true
   })
 }
+
+export const filterUsedProducts = ({ brand, powerType, minPrice, maxPrice, maxHours, minYear, category }) => {
+  return products.filter(p => {
+    if (p.condition !== CONDITIONS.USED) return false
+    if (brand    && p.brand !== brand)                          return false
+    if (powerType && p.specs.powerType !== powerType)           return false
+    if (category  && p.category !== category)                   return false
+    if (minPrice  && (p.price || 0) < minPrice)                 return false
+    if (maxPrice  && (p.price || 0) > maxPrice)                 return false
+    if (maxHours  && (p.operatingHours || 0) > maxHours)        return false
+    if (minYear   && (p.year || 0) < minYear)                   return false
+    return true
+  })
+}
+
+// Unique brands from used inventory
+export const getUsedBrands = () =>
+  [...new Set(products.filter(p => p.condition === CONDITIONS.USED).map(p => p.brand))]

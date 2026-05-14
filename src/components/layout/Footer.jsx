@@ -6,11 +6,11 @@ export default function Footer() {
   const { t, lang } = useLanguage()
 
   const links = [
-  { label: t.footer.links.products, href: '/products', key: 'products' },
-  { label: t.footer.links.used,     href: '/products', key: 'used' },
-  { label: t.footer.links.services, href: '/services', key: 'services' },
-  { label: t.footer.links.about,    href: '/about',    key: 'about' },
-  { label: t.footer.links.contact,  href: '/contact',  key: 'contact' },
+    { label: t.footer.links.products, href: '/products', key: 'products' },
+    { label: t.footer.links.used,     href: '/used',     key: 'used' },
+    { label: t.footer.links.services, href: '/services', key: 'services' },
+    { label: t.footer.links.about,    href: '/about',    key: 'about' },
+    { label: t.footer.links.contact,  href: '/contact',  key: 'contact' },
   ]
 
   return (

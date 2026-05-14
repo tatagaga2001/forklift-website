@@ -16,11 +16,11 @@ export default function Navbar() {
   const location = useLocation()
   const navLinks = [
     { label: t.nav.products, href: '/products', key: 'products', isRoute: true },
-    { label: t.nav.used,     href: '/products', key: 'used',     isRoute: true },
+    { label: t.nav.used,     href: '/used',     key: 'used',     isRoute: true },
     { label: t.nav.services, href: '/services', key: 'services', isRoute: true },
     { label: t.nav.about,    href: '/about',    key: 'about',    isRoute: true },
     { label: t.nav.contact,  href: '/contact',  key: 'contact',  isRoute: true },
-  ]   
+  ]
 
   return (
     <header
@@ -48,7 +48,7 @@ export default function Navbar() {
             {navLinks.map(link => (
               link.isRoute ? (
                 <Link
-                  key={link.key}
+                  key={link.href}
                   to={link.href}
                   className="font-heading font-medium text-sm tracking-widest uppercase text-industrial-200 hover:text-gold-400 transition-colors duration-200"
                 >
@@ -56,7 +56,7 @@ export default function Navbar() {
                 </Link>
               ) : (
                 <a
-                  key={link.key}
+                  key={link.href}
                   href={link.href}
                   className="font-heading font-medium text-sm tracking-widest uppercase text-industrial-200 hover:text-gold-400 transition-colors duration-200"
                 >
@@ -136,7 +136,7 @@ export default function Navbar() {
             {navLinks.map(link => (
               link.isRoute ? (
                 <Link
-                  key={link.key}
+                  key={link.href}
                   to={link.href}
                   onClick={() => setMenuOpen(false)}
                   className="font-heading font-medium text-sm tracking-widest uppercase text-industrial-200 hover:text-gold-400 py-2.5 border-b border-industrial-800 transition-colors"
@@ -145,7 +145,7 @@ export default function Navbar() {
                 </Link>
               ) : (
                 <a
-                  key={link.key}
+                  key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
                   className="font-heading font-medium text-sm tracking-widest uppercase text-industrial-200 hover:text-gold-400 py-2.5 border-b border-industrial-800 transition-colors"
