@@ -8,6 +8,9 @@ import ServiceDetailPage from './pages/ServiceDetailPage'
 import HomePage from './pages/HomePage'
 import ProductsPage from './pages/ProductsPage'
 import ProductDetailPage from './pages/ProductDetailPage'
+import ServicesPage from './pages/ServicesPage'      
+import AboutPage from './pages/AboutPage'           
+import ContactPage from './pages/ContactPage'       
 
 // Scroll to top on route change
 function ScrollToTop() {
