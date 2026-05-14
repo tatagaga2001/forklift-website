@@ -12,7 +12,7 @@ const CAPACITY_RANGES = [
 function FilterSection({ title, children }) {
   return (
     <div className="mb-6">
-      <h4 className="font-heading font-semibold text-xs tracking-[0.2em] uppercase text-gold-500 mb-3">
+      <h4 className="font-heading font-semibold text-xs tracking-[0.2em] uppercase text-gold-600 mb-3">
         {title}
       </h4>
       <div className="space-y-1.5">{children}</div>
@@ -26,8 +26,8 @@ function FilterOption({ active, onClick, children }) {
       onClick={onClick}
       className={`w-full text-left flex items-center gap-2.5 px-3 py-2 text-sm font-body transition-all duration-150 ${
         active
-          ? 'bg-gold-500/15 text-gold-400 border-l-2 border-gold-500'
-          : 'text-industrial-400 hover:text-white hover:bg-industrial-700 border-l-2 border-transparent'
+          ? 'bg-gold-500/15 text-industrial-900 border-l-2 border-gold-500'
+          : 'text-industrial-600 hover:text-industrial-900 hover:bg-industrial-50 border-l-2 border-transparent'
       }`}
     >
       {children}
@@ -49,13 +49,13 @@ export default function ProductFilter({ filters, onChange, counts }) {
     <aside className="w-full">
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
-        <h3 className="font-heading font-bold text-white tracking-wider uppercase text-sm">
+        <h3 className="font-heading font-bold text-industrial-900 tracking-wider uppercase text-sm">
           {p.filterTitle}
         </h3>
         {hasActiveFilters && (
           <button
             onClick={() => onChange({ category: '', condition: '', powerType: '', capacity: 'any', mastType: '' })}
-            className="text-xs font-heading text-gold-400 hover:text-gold-300 transition-colors"
+            className="text-xs font-heading text-gold-600 hover:text-gold-400 transition-colors"
           >
             {p.filterClear}
           </button>

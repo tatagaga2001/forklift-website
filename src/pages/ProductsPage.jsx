@@ -62,21 +62,21 @@ export default function ProductsPage() {
     filters.powerType || (filters.capacity && filters.capacity !== 'any') || filters.mastType
 
   return (
-    <div className="min-h-screen bg-industrial-900 pt-20">
+    <div className="min-h-screen bg-industrial-50 pt-20">
 
       {/* Page Header */}
-      <div className="bg-industrial-800 border-b border-industrial-700">
+      <div className="bg-white border-b border-industrial-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <div className="flex items-end justify-between gap-4">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-6 h-px bg-gold-500" />
-                <span className="font-heading font-medium text-gold-500 text-xs tracking-[0.3em] uppercase">
+                <span className="font-heading font-medium text-gold-600 text-xs tracking-[0.3em] uppercase">
                   Apex Lift
                 </span>
               </div>
-              <h1 className="font-display text-4xl sm:text-5xl text-white tracking-wide">{p.pageTitle}</h1>
-              <p className="font-body text-industrial-400 mt-2">{p.pageSub}</p>
+              <h1 className="font-display text-4xl sm:text-5xl text-industrial-900 tracking-wide">{p.pageTitle}</h1>
+              <p className="font-body text-industrial-500 mt-2">{p.pageSub}</p>
             </div>
 
             {/* Category Quick Tabs — desktop only */}
@@ -88,7 +88,7 @@ export default function ProductsPage() {
                   className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-heading font-semibold tracking-wider border transition-all duration-150 ${
                     filters.category === key
                       ? 'bg-gold-500 text-industrial-900 border-gold-500'
-                      : 'border-industrial-600 text-industrial-400 hover:border-gold-500/50 hover:text-white'
+                      : 'border-industrial-300 text-industrial-600 hover:border-gold-500/50 hover:text-industrial-900'
                   }`}
                 >
                   {meta.icon} {meta[lang]}
@@ -104,7 +104,7 @@ export default function ProductsPage() {
 
           {/* Sidebar Filter — Desktop */}
           <div className="hidden lg:block w-60 flex-shrink-0">
-            <div className="sticky top-24 bg-industrial-800 border border-industrial-700 p-5">
+            <div className="sticky top-24 bg-white border border-industrial-200 p-5">
               <ProductFilter filters={filters} onChange={setFilters} counts={counts} />
             </div>
           </div>
@@ -118,7 +118,7 @@ export default function ProductsPage() {
                 {/* Mobile filter toggle */}
                 <button
                   onClick={() => setDrawerOpen(true)}
-                  className="lg:hidden flex items-center gap-2 border border-industrial-600 hover:border-gold-500/50 text-industrial-300 hover:text-white font-heading font-semibold text-xs tracking-wider uppercase px-4 py-2.5 transition-all"
+                  className="lg:hidden flex items-center gap-2 border border-industrial-300 hover:border-gold-500/50 text-industrial-700 hover:text-industrial-900 font-heading font-semibold text-xs tracking-wider uppercase px-4 py-2.5 transition-all"
                 >
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L13 13.414V19a1 1 0 01-.553.894l-4 2A1 1 0 017 21v-7.586L3.293 6.707A1 1 0 013 6V4z" />
@@ -132,8 +132,8 @@ export default function ProductsPage() {
                 </button>
 
                 {/* Results count */}
-                <span className="font-body text-industrial-400 text-sm">
-                  {p.showing} <span className="text-white font-semibold">{counts.filtered}</span> {p.of} {counts.total} {p.items}
+                <span className="font-body text-industrial-500 text-sm">
+                  {p.showing} <span className="text-industrial-900 font-semibold">{counts.filtered}</span> {p.of} {counts.total} {p.items}
                 </span>
               </div>
 
@@ -143,7 +143,7 @@ export default function ProductsPage() {
                 <select
                   value={sort}
                   onChange={e => setSort(e.target.value)}
-                  className="bg-industrial-800 border border-industrial-600 text-white font-heading text-xs tracking-wider py-2 px-3 focus:outline-none focus:border-gold-500 cursor-pointer"
+                  className="bg-white border border-industrial-300 text-industrial-900 font-heading text-xs tracking-wider py-2 px-3 focus:outline-none focus:border-gold-500 cursor-pointer"
                 >
                   <option value="default">{p.sortDefault}</option>
                   <option value="priceAsc">{p.sortPriceAsc}</option>
@@ -173,7 +173,7 @@ export default function ProductsPage() {
                 )}
                 <button
                   onClick={() => setFilters(DEFAULT_FILTERS)}
-                  className="text-xs text-gold-400 hover:text-gold-300 font-heading underline underline-offset-2 transition-colors"
+                  className="text-xs text-gold-600 hover:text-gold-400 font-heading underline underline-offset-2 transition-colors"
                 >
                   {p.filterClear}
                 </button>
@@ -208,9 +208,9 @@ export default function ProductsPage() {
 
 function FilterChip({ label, onRemove }) {
   return (
-    <span className="inline-flex items-center gap-1.5 bg-gold-500/10 border border-gold-500/30 text-gold-400 font-heading text-xs tracking-wider px-2.5 py-1">
+    <span className="inline-flex items-center gap-1.5 bg-gold-500/10 border border-gold-500/30 text-gold-600 font-heading text-xs tracking-wider px-2.5 py-1">
       {label}
-      <button onClick={onRemove} className="text-gold-400/60 hover:text-gold-300 transition-colors leading-none">✕</button>
+      <button onClick={onRemove} className="text-gold-600/80 hover:text-gold-400 transition-colors leading-none">✕</button>
     </span>
   )
 }
@@ -219,7 +219,7 @@ function EmptyState({ t }) {
   return (
     <div className="flex flex-col items-center justify-center py-24 text-center">
       <div className="text-5xl mb-4 opacity-30">🔍</div>
-      <h3 className="font-heading font-semibold text-white text-xl mb-2">{t.noResults}</h3>
+      <h3 className="font-heading font-semibold text-industrial-900 text-xl mb-2">{t.noResults}</h3>
       <p className="font-body text-industrial-500 text-sm max-w-sm">{t.noResultsSub}</p>
     </div>
   )

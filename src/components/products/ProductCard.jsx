@@ -11,7 +11,7 @@ const powerColors = {
 
 const conditionConfig = {
   new:    { label: { th: 'ใหม่',    en: 'New' },    style: 'bg-gold-500 text-industrial-900' },
-  used:   { label: { th: 'มือสอง', en: 'Used' },   style: 'bg-industrial-600 text-white border border-industrial-500' },
+  used:   { label: { th: 'มือสอง', en: 'Used' },   style: 'bg-industrial-900 text-white border border-industrial-900' },
   rental: { label: { th: 'เช่า',   en: 'Rental' }, style: 'bg-blue-600 text-white' },
 }
 
@@ -29,9 +29,9 @@ export default function ProductCard({ product }) {
       return (
         <div>
           <span className="text-xs text-industrial-500 font-body">{t.detail.rentalLabel}</span>
-          <div className="font-display text-2xl text-gold-400 leading-none">
+          <div className="font-display text-2xl text-gold-600 leading-none">
             ฿{product.rentalMonthly.toLocaleString()}
-            <span className="text-xs font-body text-industrial-400 ml-1">/เดือน</span>
+            <span className="text-xs font-body text-industrial-500 ml-1">/เดือน</span>
           </div>
         </div>
       )
@@ -40,24 +40,24 @@ export default function ProductCard({ product }) {
       return (
         <div>
           <span className="text-xs text-industrial-500 font-body">{t.detail.priceLabel}</span>
-          <div className="font-display text-2xl text-gold-400 leading-none">
+          <div className="font-display text-2xl text-gold-600 leading-none">
             ฿{product.price.toLocaleString()}
           </div>
         </div>
       )
     }
     return (
-      <div className="font-heading font-semibold text-sm text-industrial-400">
+      <div className="font-heading font-semibold text-sm text-industrial-500">
         {t.detail.priceOnRequest}
       </div>
     )
   }
 
   return (
-    <div className="group relative bg-industrial-800 border border-industrial-700 hover:border-gold-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_40px_rgba(0,0,0,0.5)] flex flex-col">
+    <div className="group relative bg-white border border-industrial-200 hover:border-gold-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_28px_rgba(17,17,17,0.08)] flex flex-col">
 
       {/* Image */}
-      <div className="relative overflow-hidden aspect-[4/3] bg-industrial-900">
+      <div className="relative overflow-hidden aspect-[4/3] bg-industrial-100">
         <img
           src={img}
           alt={name}
@@ -66,7 +66,7 @@ export default function ProductCard({ product }) {
         />
 
         {/* Overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-industrial-900/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-industrial-900/55 to-transparent" />
 
         {/* Condition badge */}
         <div className="absolute top-3 left-3">
@@ -78,7 +78,7 @@ export default function ProductCard({ product }) {
         {/* Featured badge */}
         {product.isFeatured && (
           <div className="absolute top-3 right-3">
-            <span className="font-heading font-bold text-xs tracking-widest uppercase px-2.5 py-1 bg-gold-500/20 text-gold-400 border border-gold-500/40 backdrop-blur-sm">
+            <span className="font-heading font-bold text-xs tracking-widest uppercase px-2.5 py-1 bg-gold-500/20 text-gold-600 border border-gold-500/40 backdrop-blur-sm">
               ★ {t.products.featured}
             </span>
           </div>
@@ -98,29 +98,29 @@ export default function ProductCard({ product }) {
 
         {/* Brand + Model */}
         <div className="flex items-center justify-between mb-1">
-          <span className="font-heading text-xs text-gold-500/70 tracking-widest uppercase">{product.brand}</span>
+          <span className="font-heading text-xs text-gold-600 tracking-widest uppercase">{product.brand}</span>
           <span className="font-body text-xs text-industrial-500">{product.model}</span>
         </div>
 
         {/* Name */}
-        <h3 className="font-heading font-semibold text-white text-base leading-snug mb-4 group-hover:text-gold-400 transition-colors duration-200 line-clamp-2">
+        <h3 className="font-heading font-semibold text-industrial-900 text-base leading-snug mb-4 group-hover:text-gold-500 transition-colors duration-200 line-clamp-2">
           {name}
         </h3>
 
         {/* Key Specs */}
         <div className="grid grid-cols-2 gap-2 mb-4">
           {product.specs.liftingCapacityKg && (
-            <div className="bg-industrial-900/60 border border-industrial-700 px-3 py-2">
+            <div className="bg-industrial-50 border border-industrial-200 px-3 py-2">
               <div className="text-[10px] text-industrial-500 font-heading tracking-wider uppercase mb-0.5">{t.detail.capacity}</div>
-              <div className="font-heading font-semibold text-white text-sm">
+              <div className="font-heading font-semibold text-industrial-900 text-sm">
                 {(product.specs.liftingCapacityKg / 1000).toFixed(1)} ตัน
               </div>
             </div>
           )}
           {product.specs.liftHeightMm > 0 && (
-            <div className="bg-industrial-900/60 border border-industrial-700 px-3 py-2">
+            <div className="bg-industrial-50 border border-industrial-200 px-3 py-2">
               <div className="text-[10px] text-industrial-500 font-heading tracking-wider uppercase mb-0.5">{t.detail.liftHeight}</div>
-              <div className="font-heading font-semibold text-white text-sm">
+              <div className="font-heading font-semibold text-industrial-900 text-sm">
                 {(product.specs.liftHeightMm / 1000).toFixed(1)} ม.
               </div>
             </div>
@@ -148,7 +148,7 @@ export default function ProductCard({ product }) {
         <div className="flex-1" />
 
         {/* Price */}
-        <div className="mb-4 pt-3 border-t border-industrial-700">
+        <div className="mb-4 pt-3 border-t border-industrial-200">
           {priceDisplay()}
         </div>
 
@@ -156,13 +156,13 @@ export default function ProductCard({ product }) {
         <div className="grid grid-cols-2 gap-2">
           <Link
             to={`/products/${product.id}`}
-            className="flex items-center justify-center gap-1.5 bg-gold-500 hover:bg-gold-400 text-industrial-900 font-heading font-bold text-xs tracking-wider uppercase py-2.5 transition-all duration-200 hover:shadow-[0_0_20px_rgba(245,200,66,0.4)]"
+            className="flex items-center justify-center gap-1.5 bg-gold-500 hover:bg-gold-400 text-industrial-900 font-heading font-bold text-xs tracking-wider uppercase py-2.5 transition-all duration-200 shadow-sm hover:shadow-md"
           >
             {t.products.viewDetail}
           </Link>
           <a
             href="#contact"
-            className="flex items-center justify-center gap-1.5 border border-industrial-500 hover:border-gold-500/60 text-industrial-300 hover:text-gold-400 font-heading font-bold text-xs tracking-wider uppercase py-2.5 transition-all duration-200"
+            className="flex items-center justify-center gap-1.5 border border-industrial-300 hover:border-gold-500/60 text-industrial-700 hover:text-gold-500 font-heading font-bold text-xs tracking-wider uppercase py-2.5 transition-all duration-200"
           >
             {t.products.requestQuote}
           </a>

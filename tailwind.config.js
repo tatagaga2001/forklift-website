@@ -5,21 +5,21 @@ export default {
     extend: {
       colors: {
         gold: {
-          400: '#F5C842',
-          500: '#E8B800',
-          600: '#C9A000',
+          400: '#C89B3C',
+          500: '#D4A017',
+          600: '#8A650B',
         },
         industrial: {
-          50:  '#F7F7F7',
-          100: '#EBEBEB',
-          200: '#D4D4D4',
-          300: '#ABABAB',
-          400: '#737373',
-          500: '#4A4A4A',
-          600: '#2E2E2E',
-          700: '#1E1E1E',
-          800: '#141414',
-          900: '#0A0A0A',
+          50:  '#F5F5F5',
+          100: '#FFFFFF',
+          200: '#E5E5E5',
+          300: '#CCCCCC',
+          400: '#888888',
+          500: '#666666',
+          600: '#3A3A3A',
+          700: '#2A2A2A',
+          800: '#1A1A1A',
+          900: '#111111',
         },
       },
       fontFamily: {
@@ -29,7 +29,7 @@ export default {
         thai: ['Sarabun', 'sans-serif'],
       },
       backgroundImage: {
-        'grid-pattern': "linear-gradient(rgba(245,200,66,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(245,200,66,0.05) 1px, transparent 1px)",
+        'grid-pattern': "linear-gradient(rgba(212,160,23,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(212,160,23,0.08) 1px, transparent 1px)",
       },
       backgroundSize: {
         'grid': '60px 60px',

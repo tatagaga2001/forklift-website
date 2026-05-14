@@ -13,7 +13,7 @@
   }
 
   body {
-    @apply bg-industrial-900 text-white;
+    @apply bg-industrial-50 text-industrial-900;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -35,12 +35,12 @@
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #141414;
+  background: #F5F5F5;
 }
 ::-webkit-scrollbar-thumb {
-  background: #4A4A4A;
+  background: #CCCCCC;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #E8B800;
+  background: #D4A017;
 }
