@@ -90,7 +90,7 @@ export const heroSlides = [
     primaryHref: '#contact',
     secondaryHref: '#services',
     visual: 'service',
-    image: '/images/three-forklift.png',
+    image: '/images/hero/three-forklift.png',
     label: 'Maintenance & Emergency Support',
   },
 ]
