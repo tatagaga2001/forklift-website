@@ -25,17 +25,17 @@ const mastLabel = {
 }
 const condLabel = {
   new:    { th: 'มือหนึ่ง', en: 'New',    style: 'bg-gold-500 text-industrial-900' },
-  used:   { th: 'มือสอง',  en: 'Used',   style: 'bg-industrial-900 text-white border border-industrial-900' },
+  used:   { th: 'มือสอง',  en: 'Used',   style: 'bg-industrial-600 text-white border border-industrial-500' },
   rental: { th: 'เช่า',    en: 'Rental', style: 'bg-blue-600 text-white' },
 }
 
 function SpecRow({ label, value, unit = '' }) {
   if (!value && value !== 0) return null
   return (
-    <div className="flex items-start justify-between py-3 border-b border-industrial-200">
-      <span className="font-body text-industrial-500 text-sm">{label}</span>
-      <span className="font-heading font-semibold text-industrial-900 text-sm text-right">
-        {value}{unit && <span className="text-industrial-500 font-normal ml-1">{unit}</span>}
+    <div className="flex items-start justify-between py-3 border-b border-industrial-700/60">
+      <span className="font-body text-industrial-400 text-sm">{label}</span>
+      <span className="font-heading font-semibold text-white text-sm text-right">
+        {value}{unit && <span className="text-industrial-400 font-normal ml-1">{unit}</span>}
       </span>
     </div>
   )
@@ -52,10 +52,10 @@ export default function ProductDetailPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen bg-industrial-50 pt-28 flex flex-col items-center justify-center text-center px-4">
+      <div className="min-h-screen bg-industrial-900 pt-28 flex flex-col items-center justify-center text-center px-4">
         <div className="text-6xl mb-4 opacity-30">🔍</div>
-        <h2 className="font-display text-4xl text-industrial-900 mb-4">ไม่พบสินค้า</h2>
-        <p className="text-industrial-500 mb-8">Product not found</p>
+        <h2 className="font-display text-4xl text-white mb-4">ไม่พบสินค้า</h2>
+        <p className="text-industrial-400 mb-8">Product not found</p>
         <Link to="/products" className="bg-gold-500 text-industrial-900 font-heading font-bold text-sm tracking-widest uppercase px-8 py-3 hover:bg-gold-400 transition-colors">
           {d.backToProducts}
         </Link>
@@ -76,16 +76,16 @@ export default function ProductDetailPage() {
     .slice(0, 3)
 
   return (
-    <div className="min-h-screen bg-industrial-50 pt-20">
+    <div className="min-h-screen bg-industrial-900 pt-20">
 
       {/* Breadcrumb */}
-      <div className="bg-white border-b border-industrial-200">
+      <div className="bg-industrial-800 border-b border-industrial-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-2 text-xs font-heading text-industrial-500">
-          <Link to="/" className="hover:text-gold-500 transition-colors">Home</Link>
+          <Link to="/" className="hover:text-gold-400 transition-colors">Home</Link>
           <span>/</span>
-          <Link to="/products" className="hover:text-gold-500 transition-colors">{t.nav.products}</Link>
+          <Link to="/products" className="hover:text-gold-400 transition-colors">{t.nav.products}</Link>
           <span>/</span>
-          <span className="text-industrial-700 truncate max-w-[200px]">{product.name[lang]}</span>
+          <span className="text-industrial-300 truncate max-w-[200px]">{product.name[lang]}</span>
         </div>
       </div>
 
@@ -97,7 +97,7 @@ export default function ProductDetailPage() {
           {/* Left: Images */}
           <div>
             {/* Main image */}
-            <div className="relative aspect-[4/3] bg-white border border-industrial-200 overflow-hidden mb-3">
+            <div className="relative aspect-[4/3] bg-industrial-800 border border-industrial-700 overflow-hidden mb-3">
               <img
                 src={product.images[activeImg]}
                 alt={product.name[lang]}
@@ -124,7 +124,7 @@ export default function ProductDetailPage() {
                     key={i}
                     onClick={() => setActiveImg(i)}
                     className={`relative w-20 h-16 overflow-hidden border-2 transition-all duration-150 flex-shrink-0 ${
-                      activeImg === i ? 'border-gold-500' : 'border-industrial-200 hover:border-industrial-300'
+                      activeImg === i ? 'border-gold-500' : 'border-industrial-700 hover:border-industrial-500'
                     }`}
                   >
                     <img src={img} alt={`view ${i + 1}`} className="w-full h-full object-cover" />
@@ -139,55 +139,55 @@ export default function ProductDetailPage() {
             {/* Category */}
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg">{cat.icon}</span>
-              <span className="font-heading font-medium text-gold-600 text-xs tracking-[0.25em] uppercase">{cat[lang]}</span>
+              <span className="font-heading font-medium text-gold-500 text-xs tracking-[0.25em] uppercase">{cat[lang]}</span>
             </div>
 
             {/* Name */}
-            <h1 className="font-heading font-bold text-industrial-900 text-2xl sm:text-3xl leading-tight mb-2">
+            <h1 className="font-heading font-bold text-white text-2xl sm:text-3xl leading-tight mb-2">
               {product.name[lang]}
             </h1>
 
             {/* Brand + Model + SKU */}
-            <div className="flex flex-wrap gap-3 mb-6 text-sm font-body text-industrial-500">
-              <span>{d.brand}: <span className="text-industrial-900">{product.brand}</span></span>
-              <span className="text-industrial-300">|</span>
-              <span>{d.model}: <span className="text-industrial-900">{product.model}</span></span>
-              <span className="text-industrial-300">|</span>
-              <span>{d.sku}: <span className="text-industrial-600 font-mono text-xs">{product.sku}</span></span>
+            <div className="flex flex-wrap gap-3 mb-6 text-sm font-body text-industrial-400">
+              <span>{d.brand}: <span className="text-white">{product.brand}</span></span>
+              <span className="text-industrial-600">|</span>
+              <span>{d.model}: <span className="text-white">{product.model}</span></span>
+              <span className="text-industrial-600">|</span>
+              <span>{d.sku}: <span className="text-industrial-300 font-mono text-xs">{product.sku}</span></span>
             </div>
 
             {/* Key 4 Specs Hero */}
             <div className="grid grid-cols-2 gap-3 mb-6">
               {s.liftingCapacityKg && (
-                <div className="bg-white border border-industrial-200 p-4">
+                <div className="bg-industrial-800 border border-industrial-700 p-4">
                   <div className="text-[10px] text-industrial-500 font-heading tracking-wider uppercase mb-1">{d.capacity}</div>
-                  <div className="font-display text-3xl text-gold-600 leading-none">
+                  <div className="font-display text-3xl text-gold-400 leading-none">
                     {(s.liftingCapacityKg / 1000).toFixed(1)}
-                    <span className="text-base font-body text-industrial-500 ml-1">ตัน</span>
+                    <span className="text-base font-body text-industrial-400 ml-1">ตัน</span>
                   </div>
                 </div>
               )}
               {s.liftHeightMm > 0 && (
-                <div className="bg-white border border-industrial-200 p-4">
+                <div className="bg-industrial-800 border border-industrial-700 p-4">
                   <div className="text-[10px] text-industrial-500 font-heading tracking-wider uppercase mb-1">{d.liftHeight}</div>
-                  <div className="font-display text-3xl text-gold-600 leading-none">
+                  <div className="font-display text-3xl text-gold-400 leading-none">
                     {(s.liftHeightMm / 1000).toFixed(1)}
-                    <span className="text-base font-body text-industrial-500 ml-1">ม.</span>
+                    <span className="text-base font-body text-industrial-400 ml-1">ม.</span>
                   </div>
                 </div>
               )}
               {s.powerType && pw && (
-                <div className="bg-white border border-industrial-200 p-4">
+                <div className="bg-industrial-800 border border-industrial-700 p-4">
                   <div className="text-[10px] text-industrial-500 font-heading tracking-wider uppercase mb-1">{d.powerType}</div>
-                  <div className="font-heading font-semibold text-industrial-900 text-lg flex items-center gap-1.5">
+                  <div className="font-heading font-semibold text-white text-lg flex items-center gap-1.5">
                     {pw.icon} {pw[lang]}
                   </div>
                 </div>
               )}
               {mast && (
-                <div className="bg-white border border-industrial-200 p-4">
+                <div className="bg-industrial-800 border border-industrial-700 p-4">
                   <div className="text-[10px] text-industrial-500 font-heading tracking-wider uppercase mb-1">{d.mastType}</div>
-                  <div className="font-heading font-semibold text-industrial-900 text-base leading-tight">{mast[lang]}</div>
+                  <div className="font-heading font-semibold text-white text-base leading-tight">{mast[lang]}</div>
                 </div>
               )}
             </div>
@@ -195,10 +195,10 @@ export default function ProductDetailPage() {
             {/* Environment tags */}
             <div className="flex flex-wrap gap-2 mb-6">
               {s.environment?.includes('indoor') && (
-                <span className="font-heading text-xs tracking-wider bg-industrial-100 text-industrial-700 border border-industrial-200 px-3 py-1">{d.indoor}</span>
+                <span className="font-heading text-xs tracking-wider bg-industrial-700 text-industrial-300 px-3 py-1">{d.indoor}</span>
               )}
               {s.environment?.includes('outdoor') && (
-                <span className="font-heading text-xs tracking-wider bg-industrial-100 text-industrial-700 border border-industrial-200 px-3 py-1">{d.outdoor}</span>
+                <span className="font-heading text-xs tracking-wider bg-industrial-700 text-industrial-300 px-3 py-1">{d.outdoor}</span>
               )}
               {s.coldRoomRated && (
                 <span className="font-heading text-xs tracking-wider bg-blue-900/40 text-blue-400 border border-blue-700 px-3 py-1">{d.coldRoom}</span>
@@ -212,20 +212,20 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Price */}
-            <div className="bg-white border border-industrial-200 p-5 mb-6">
+            <div className="bg-industrial-800/60 border border-industrial-700 p-5 mb-6">
               {product.condition === CONDITIONS.RENTAL && product.rentalMonthly ? (
                 <div>
                   <div className="text-xs text-industrial-500 font-body mb-1">{d.rentalLabel}</div>
-                  <div className="font-display text-4xl text-gold-600">
+                  <div className="font-display text-4xl text-gold-400">
                     ฿{product.rentalMonthly.toLocaleString()}
-                    <span className="text-sm font-body text-industrial-500 ml-2">/เดือน</span>
+                    <span className="text-sm font-body text-industrial-400 ml-2">/เดือน</span>
                   </div>
                   <p className="text-xs text-industrial-500 font-body mt-2">รวม PM + ประกันอุบัติเหตุ</p>
                 </div>
               ) : product.price ? (
                 <div>
                   <div className="text-xs text-industrial-500 font-body mb-1">{d.priceLabel}</div>
-                  <div className="font-display text-4xl text-gold-600">
+                  <div className="font-display text-4xl text-gold-400">
                     ฿{product.price.toLocaleString()}
                   </div>
                   {product.condition === CONDITIONS.USED && (
@@ -235,7 +235,7 @@ export default function ProductDetailPage() {
                   )}
                 </div>
               ) : (
-                <div className="font-heading text-industrial-700">{d.priceOnRequest}</div>
+                <div className="font-heading text-industrial-300">{d.priceOnRequest}</div>
               )}
             </div>
 
@@ -243,7 +243,7 @@ export default function ProductDetailPage() {
             <div className="grid grid-cols-3 gap-3">
               <a
                 href={`tel:${companyInfo.phone}`}
-                className="flex flex-col items-center gap-1 bg-gold-500 hover:bg-gold-400 text-industrial-900 font-heading font-bold text-xs tracking-wider uppercase py-3.5 transition-all shadow-sm hover:shadow-md"
+                className="flex flex-col items-center gap-1 bg-gold-500 hover:bg-gold-400 text-industrial-900 font-heading font-bold text-xs tracking-wider uppercase py-3.5 transition-all hover:shadow-[0_0_20px_rgba(245,200,66,0.5)]"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -261,15 +261,15 @@ export default function ProductDetailPage() {
                 </svg>
                 {d.lineChat}
               </a>
-              <a
-                href="#contact"
-                className="flex flex-col items-center gap-1 border border-industrial-300 hover:border-gold-500 text-industrial-700 hover:text-gold-500 font-heading font-bold text-xs tracking-wider uppercase py-3.5 transition-all text-center"
+              <Link
+                to={`/contact?product=${product.id}`}
+                className="flex flex-col items-center gap-1 border border-industrial-500 hover:border-gold-500 text-industrial-300 hover:text-gold-400 font-heading font-bold text-xs tracking-wider uppercase py-3.5 transition-all text-center"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
                 {d.getQuote}
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -279,7 +279,7 @@ export default function ProductDetailPage() {
 
           {/* Specifications */}
           <div className="lg:col-span-2">
-            <h2 className="font-display text-3xl text-industrial-900 tracking-wide mb-6 pb-3 border-b border-gold-500/40">
+            <h2 className="font-display text-3xl text-white tracking-wide mb-6 pb-3 border-b border-gold-500/40">
               {d.specsTitle}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8">
@@ -316,14 +316,14 @@ export default function ProductDetailPage() {
           <div className="space-y-8">
             {/* Features */}
             <div>
-              <h2 className="font-display text-2xl text-industrial-900 tracking-wide mb-4 pb-3 border-b border-gold-500/40">
+              <h2 className="font-display text-2xl text-white tracking-wide mb-4 pb-3 border-b border-gold-500/40">
                 {d.featuresTitle}
               </h2>
               <ul className="space-y-3">
                 {product.features[lang].map((f, i) => (
                   <li key={i} className="flex gap-3">
                     <span className="text-gold-500 mt-0.5 flex-shrink-0">✓</span>
-                    <span className="font-body text-industrial-600 text-sm leading-relaxed">{f}</span>
+                    <span className="font-body text-industrial-300 text-sm leading-relaxed">{f}</span>
                   </li>
                 ))}
               </ul>
@@ -331,12 +331,12 @@ export default function ProductDetailPage() {
 
             {/* Suitable For */}
             <div>
-              <h2 className="font-display text-2xl text-industrial-900 tracking-wide mb-4 pb-3 border-b border-gold-500/40">
+              <h2 className="font-display text-2xl text-white tracking-wide mb-4 pb-3 border-b border-gold-500/40">
                 {d.suitableTitle}
               </h2>
               <div className="flex flex-wrap gap-2">
                 {product.suitableFor[lang].map((item, i) => (
-                  <span key={i} className="font-heading text-xs tracking-wider bg-white border border-industrial-200 text-industrial-700 px-3 py-1.5">
+                  <span key={i} className="font-heading text-xs tracking-wider bg-industrial-800 border border-industrial-700 text-industrial-300 px-3 py-1.5">
                     {item}
                   </span>
                 ))}
@@ -350,7 +350,7 @@ export default function ProductDetailPage() {
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-6 h-px bg-gold-500" />
-              <h2 className="font-display text-3xl text-industrial-900 tracking-wide">{d.relatedTitle}</h2>
+              <h2 className="font-display text-3xl text-white tracking-wide">{d.relatedTitle}</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {related.map(pr => <ProductCard key={pr.id} product={pr} />)}

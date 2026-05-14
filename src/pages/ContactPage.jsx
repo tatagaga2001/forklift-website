@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext'
 import { companyInfo } from '../data/mockData'
+import { getProductById } from '../data/products'
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Line Notify helper
@@ -27,7 +29,10 @@ async function sendLineNotify(message) {
   return res
 }
 
-function buildMessage(data, lang) {
+function buildMessage(data, preProduct, lang) {
+  const productLine = preProduct
+    ? `🏭 สินค้า: ${preProduct.name.th} (${preProduct.sku})${preProduct.price ? ' ราคา ฿' + preProduct.price.toLocaleString() : ''}\n`
+    : ''
   return `
 🔔 ใบเสนอราคาใหม่ — Apex Lift
 ──────────────────
@@ -35,7 +40,7 @@ function buildMessage(data, lang) {
 📞 โทร: ${data.phone}
 🏢 บริษัท: ${data.company || '-'}
 💬 Line: ${data.lineId || '-'}
-📋 สนใจ: ${data.interest}
+${productLine}📋 สนใจ: ${data.interest}
 📝 รายละเอียด:
 ${data.message || '-'}
 ──────────────────
@@ -46,10 +51,31 @@ ${data.message || '-'}
 export default function ContactPage() {
   const { t, lang } = useLanguage()
   const c = t.contact
+  const [searchParams] = useSearchParams()
+
+  // ดึง product จาก URL ?product=id
+  const productId = searchParams.get('product')
+  const preProduct = productId ? getProductById(productId) : null
 
   const [form, setForm] = useState({
-    name: '', phone: '', company: '', lineId: '', interest: '', message: '',
+    name: '', phone: '', company: '', lineId: '',
+    interest: preProduct ? (lang === 'th' ? preProduct.name.th : preProduct.name.en) : '',
+    message: preProduct
+      ? (lang === 'th'
+          ? `สนใจ ${preProduct.name.th} (${preProduct.sku}) ราคา ${preProduct.price ? '฿' + preProduct.price.toLocaleString() : 'ขอใบเสนอราคา'}`
+          : `Interested in ${preProduct.name.en} (${preProduct.sku}) Price: ${preProduct.price ? '฿' + preProduct.price.toLocaleString() : 'Request quote'}`)
+      : '',
   })
+
+  // sync ถ้า lang เปลี่ยนหลัง preProduct โหลด
+  useEffect(() => {
+    if (preProduct) {
+      setForm(f => ({
+        ...f,
+        interest: lang === 'th' ? preProduct.name.th : preProduct.name.en,
+      }))
+    }
+  }, [lang])
   const [status, setStatus] = useState('idle') // idle | sending | success | error
   const [errors, setErrors] = useState({})
 
@@ -74,7 +100,7 @@ export default function ContactPage() {
 
     setStatus('sending')
     try {
-      const message = buildMessage(form, lang)
+      const message = buildMessage(form, preProduct, lang)
       const res = await sendLineNotify(message)
       if (res.ok) {
         setStatus('success')
@@ -114,6 +140,25 @@ export default function ContactPage() {
               <h2 className="font-display text-2xl text-gray-900 tracking-wide mb-6 pb-3 border-b border-gray-100">
                 {c.formTitle}
               </h2>
+
+              {/* Pre-filled product banner */}
+              {preProduct && (
+                <div className="flex items-center gap-4 bg-gold-500/10 border border-gold-500/30 px-5 py-4 mb-6">
+                  <span className="text-2xl flex-shrink-0">🏭</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-heading font-bold text-gray-900 text-sm truncate">
+                      {preProduct.name[lang]}
+                    </p>
+                    <p className="font-body text-gray-500 text-xs mt-0.5">
+                      {preProduct.sku}
+                      {preProduct.price && ` · ฿${preProduct.price.toLocaleString()}`}
+                    </p>
+                  </div>
+                  <span className="font-heading font-bold text-[10px] tracking-widest uppercase bg-gold-500 text-black px-2.5 py-1 flex-shrink-0">
+                    {lang === 'th' ? 'สินค้าที่เลือก' : 'Selected'}
+                  </span>
+                </div>
+              )}
 
               {/* Line Notify note */}
               {LINE_TOKEN && (

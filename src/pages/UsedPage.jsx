@@ -110,7 +110,7 @@ function UsedCard({ product, t, lang }) {
             {u.viewDetail}
           </Link>
           <Link
-            to="/contact"
+            to={`/contact?product=${product.id}`}
             className="flex items-center justify-center border border-gray-300 hover:border-gold-500 text-gray-600 hover:text-gold-600 font-heading font-bold text-xs tracking-wider uppercase py-2.5 transition-all"
           >
             {u.requestQuote}
