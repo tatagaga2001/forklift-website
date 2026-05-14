@@ -28,7 +28,7 @@ export const heroSlides = [
     primaryHref: '/products',
     secondaryHref: '#contact',
     visual: 'forklift',
-    label: 'Premium Forklift Solutions',
+    image: '/public/images/hero/one-forklift.png',
   },
   {
     id: 'used-certified',
@@ -59,7 +59,7 @@ export const heroSlides = [
     primaryHref: '/products',
     secondaryHref: '#contact',
     visual: 'certified',
-    label: 'Inspected & Work-Ready',
+    image: '/public/images/hero/two-forklift.png',
   },
   {
     id: 'service-247',
@@ -90,6 +90,7 @@ export const heroSlides = [
     primaryHref: '#contact',
     secondaryHref: '#services',
     visual: 'service',
+    image: '/images/hero/three-forklift.png',
     label: 'Maintenance & Emergency Support',
   },
 ]

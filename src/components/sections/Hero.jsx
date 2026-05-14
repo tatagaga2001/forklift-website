@@ -33,9 +33,17 @@ export default function Hero() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-industrial-900 via-industrial-800 to-industrial-900" />
       <div
-        className="absolute inset-0 opacity-30"
+        key={`${slide.id}-background`}
+        className="absolute inset-0 bg-cover bg-center animate-[heroBg_700ms_ease-out]"
+        style={{ backgroundImage: `url(${slide.image})` }}
+      />
+      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/20" />
+      <div className="absolute inset-y-0 left-0 w-full md:w-2/3 bg-gradient-to-r from-black via-black/80 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-industrial-900 via-transparent to-black/20" />
+      <div
+        className="absolute inset-0 opacity-20"
         style={{
           backgroundImage: `
             linear-gradient(rgba(212,160,23,0.07) 1px, transparent 1px),
@@ -44,11 +52,10 @@ export default function Hero() {
           backgroundSize: '60px 60px',
         }}
       />
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-gold-500/5 to-transparent" />
       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-gold-500 to-transparent opacity-60" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pt-28 pb-28">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="max-w-2xl">
           <div key={slide.id} className="animate-[fadeIn_500ms_ease-out]">
             <div className="inline-flex items-center gap-2 mb-6 sm:mb-8">
               <div className="w-8 h-px bg-gold-500" />
@@ -65,14 +72,6 @@ export default function Hero() {
             <p className="font-body text-industrial-300 text-base sm:text-lg leading-relaxed max-w-xl mb-8 sm:mb-10">
               {slide.description[lang]}
             </p>
-
-            <div key={`${slide.id}-mobile-visual`} className="relative md:hidden h-36 mb-8 bg-industrial-800/60 border border-industrial-600 overflow-hidden animate-[fadeIn_500ms_ease-out]">
-              <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-gold-500" />
-              <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-gold-500" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <HeroVisual type={slide.visual} />
-              </div>
-            </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <HeroLink
@@ -99,33 +98,6 @@ export default function Hero() {
                   <div className="font-body text-industrial-400 text-xs mt-1 leading-tight">{s.label}</div>
                 </div>
               ))}
-            </div>
-          </div>
-
-          <div className="relative hidden md:flex items-center justify-center min-h-[340px] lg:min-h-[460px]">
-            <div className="absolute w-[320px] h-[320px] lg:w-[480px] lg:h-[480px] border border-gold-500/20 rounded-full transition-all duration-500" />
-            <div className="absolute w-[250px] h-[250px] lg:w-[380px] lg:h-[380px] border border-gold-500/10 rounded-full transition-all duration-500" />
-
-            <div key={`${slide.id}-visual`} className="relative w-[330px] h-[270px] lg:w-[420px] lg:h-[340px] bg-industrial-800/60 border border-industrial-600 backdrop-blur-sm flex flex-col items-center justify-center overflow-hidden animate-[fadeIn_500ms_ease-out]">
-              <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-gold-500" />
-              <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-gold-500" />
-              <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-gold-500" />
-              <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-gold-500" />
-
-              <HeroVisual type={slide.visual} />
-
-              <div className="absolute bottom-4 left-0 right-0 flex justify-center px-4">
-                <div className="bg-gold-500/10 border border-gold-500/30 px-4 py-1.5">
-                  <span className="font-heading text-gold-500 text-xs tracking-[0.25em] uppercase">{slide.label}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="absolute -top-4 right-4 lg:-right-4 bg-gold-500 text-industrial-900 font-heading font-bold text-xs tracking-wider px-3 py-2 shadow-lg">
-              {slide.badge.en}
-            </div>
-            <div className="absolute -bottom-4 left-4 lg:-left-4 bg-industrial-700 border border-industrial-500 text-white font-heading text-xs tracking-wider px-3 py-2">
-              APEX LIFT
             </div>
           </div>
         </div>
@@ -193,6 +165,10 @@ export default function Hero() {
           from { opacity: 0; transform: translateY(12px); }
           to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes heroBg {
+          from { opacity: 0; transform: scale(1.025); }
+          to { opacity: 1; transform: scale(1); }
+        }
       `}</style>
     </section>
   )
@@ -204,54 +180,4 @@ function HeroLink({ href, className, children }) {
   }
 
   return <a href={href} className={className}>{children}</a>
-}
-
-function HeroVisual({ type }) {
-  const service = type === 'service'
-  const certified = type === 'certified'
-
-  return (
-    <svg viewBox="0 0 300 220" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-64 h-48 lg:w-72 lg:h-52">
-      <rect x="60" y="20" width="12" height="130" fill="#4A4A4A" />
-      <rect x="78" y="20" width="8" height="130" fill="#2E2E2E" />
-      <rect x="40" y="148" width="55" height="8" rx="2" fill="#D4A017" />
-      <rect x="40" y="162" width="55" height="8" rx="2" fill="#D4A017" />
-      <rect x="58" y="140" width="24" height="38" fill="#3A3A3A" />
-      <rect x="86" y="95" width="130" height="65" rx="4" fill={certified ? '#333333' : '#3A3A3A'} />
-      <rect x="90" y="75" width="75" height="50" rx="3" fill="#2E2E2E" />
-      <rect x="94" y="79" width="67" height="42" rx="2" fill="#1E1E1E" />
-      <rect x="98" y="83" width="55" height="28" rx="1" fill="#2a3a4a" opacity="0.8" />
-      <line x1="125" y1="83" x2="125" y2="111" stroke="#3a5a7a" strokeWidth="1" />
-      <circle cx="115" cy="88" r="6" fill="#4A4A4A" />
-      <rect x="109" y="94" width="12" height="14" rx="2" fill="#4A4A4A" />
-      <rect x="206" y="110" width="30" height="50" rx="3" fill="#252525" />
-      <rect x="210" y="118" width="22" height="6" rx="1" fill="#1a1a1a" />
-      <rect x="210" y="128" width="22" height="6" rx="1" fill="#1a1a1a" />
-      <circle cx="115" cy="165" r="22" fill="#1E1E1E" stroke="#4A4A4A" strokeWidth="3" />
-      <circle cx="115" cy="165" r="12" fill="#2E2E2E" />
-      <circle cx="115" cy="165" r="4" fill="#D4A017" />
-      <circle cx="200" cy="165" r="20" fill="#1E1E1E" stroke="#4A4A4A" strokeWidth="3" />
-      <circle cx="200" cy="165" r="11" fill="#2E2E2E" />
-      <circle cx="200" cy="165" r="4" fill="#D4A017" />
-      <rect x="158" y="80" width="6" height="18" rx="3" fill="#3A3A3A" />
-      <rect x="86" y="150" width="130" height="4" fill="#D4A017" opacity="0.7" />
-      <text x="102" y="142" fontFamily="monospace" fontSize="9" fill="#D4A017" opacity="0.9" letterSpacing="1">APEX LIFT</text>
-
-      {certified && (
-        <g>
-          <circle cx="236" cy="86" r="18" fill="#111111" stroke="#D4A017" strokeWidth="3" />
-          <path d="M228 86l5 5 11-12" stroke="#D4A017" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-        </g>
-      )}
-
-      {service && (
-        <g>
-          <rect x="222" y="76" width="34" height="44" rx="4" fill="#111111" stroke="#D4A017" strokeWidth="2" />
-          <path d="M239 86v24M227 98h24" stroke="#D4A017" strokeWidth="4" strokeLinecap="round" />
-          <circle cx="244" cy="137" r="10" fill="#D4A017" opacity="0.9" />
-          <path d="M238 137h12" stroke="#111111" strokeWidth="2.5" strokeLinecap="round" />
-        </g>
-      )}
-    </svg>
-  )
 }
