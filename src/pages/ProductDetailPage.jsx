@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext'
-import { getProductById, products, categoryMeta, CONDITIONS, POWER_TYPES } from '../data/products'
+import { useProduct, useProducts } from '../hooks/useProducts'
+import { categoryMeta, CONDITIONS, POWER_TYPES } from '../data/products'
 import ProductCard from '../components/products/ProductCard'
 import { companyInfo } from '../data/mockData'
 
@@ -47,8 +48,15 @@ export default function ProductDetailPage() {
   const { t, lang } = useLanguage()
   const d = t.detail
 
-  const product = getProductById(id)
+  const { data: product, loading } = useProduct(id)
+  const { data: allProducts } = useProducts()
   const [activeImg, setActiveImg] = useState(0)
+
+  if (loading) return (
+    <div className="min-h-screen bg-industrial-900 pt-28 flex items-center justify-center">
+      <div className="text-gold-500 font-heading tracking-widest animate-pulse">กำลังโหลด...</div>
+    </div>
+  )
 
   if (!product) {
     return (
@@ -71,7 +79,7 @@ export default function ProductDetailPage() {
   const mast = s.mastType ? mastLabel[s.mastType] : null
 
   // Related products: same category, different id
-  const related = products
+  const related = allProducts
     .filter(pr => pr.category === product.category && pr.id !== product.id)
     .slice(0, 3)
 

@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { useLanguage } from '../context/LanguageContext'
-import { products, categoryMeta, CATEGORIES } from '../data/products'
+import { useProducts } from '../hooks/useProducts'
+import { categoryMeta, CATEGORIES } from '../data/products'
 import ProductCard from '../components/products/ProductCard'
 import ProductFilter, { CAPACITY_RANGES } from '../components/products/ProductFilter'
 import FilterDrawer from '../components/products/FilterDrawer'
@@ -18,6 +19,8 @@ const SORT_OPTIONS = ['default', 'priceAsc', 'priceDesc', 'capacity']
 export default function ProductsPage() {
   const { t, lang } = useLanguage()
   const p = t.products
+
+  const { data: products, loading } = useProducts()
 
   const [filters, setFilters] = useState(DEFAULT_FILTERS)
   const [sort, setSort] = useState('default')
@@ -56,10 +59,16 @@ export default function ProductsPage() {
       byCategory[cat] = products.filter(pr => pr.category === cat).length
     })
     return { total: products.length, filtered: filtered.length, byCategory }
-  }, [filtered])
+  }, [products, filtered])
 
   const hasActiveFilters = filters.category || filters.condition ||
     filters.powerType || (filters.capacity && filters.capacity !== 'any') || filters.mastType
+
+  if (loading) return (
+    <div className="min-h-screen bg-industrial-50 pt-20 flex items-center justify-center">
+      <div className="text-gold-600 font-heading tracking-widest animate-pulse">กำลังโหลดสินค้า...</div>
+    </div>
+  )
 
   return (
     <div className="min-h-screen bg-industrial-50 pt-20">

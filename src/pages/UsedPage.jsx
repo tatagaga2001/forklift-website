@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../context/LanguageContext'
-import { getUsedProducts, getUsedBrands, filterUsedProducts, categoryMeta, POWER_TYPES, CONDITIONS } from '../data/products'
+import { useUsedProducts } from '../hooks/useProducts'
+import { categoryMeta, POWER_TYPES, CONDITIONS } from '../data/products'
 
 // ─── Filter config ────────────────────────────────────────────────────────────
 const HOURS_RANGES = [
@@ -214,40 +215,52 @@ export default function UsedPage() {
   const { t, lang } = useLanguage()
   const u = t.used
 
+  const { data: usedProducts, loading } = useUsedProducts()
+
   const [filters, setFilters] = useState(DEFAULT_FILTERS)
   const [sort, setSort]       = useState('default')
   const [drawerOpen, setDrawerOpen] = useState(false)
 
-  const brands = useMemo(() => getUsedBrands(), [])
+  const brands = useMemo(() => [...new Set(usedProducts.map(p => p.brand).filter(Boolean))], [usedProducts])
 
   const filtered = useMemo(() => {
     const priceRange = PRICE_RANGES.find(r => r.key === filters.price) || PRICE_RANGES[0]
     const hoursRange = HOURS_RANGES.find(r => r.key === filters.hours) || HOURS_RANGES[0]
 
-    let result = filterUsedProducts({
-      brand:     filters.brand     || undefined,
-      powerType: filters.powerType || undefined,
-      category:  filters.category  || undefined,
-      minPrice:  priceRange.min    || undefined,
-      maxPrice:  priceRange.max    || undefined,
-      maxHours:  hoursRange.max    || undefined,
-      minYear:   filters.minYear   || undefined,
+    let result = usedProducts.filter(p => {
+      if (filters.brand     && p.brand !== filters.brand)                return false
+      if (filters.powerType && p.specs?.powerType !== filters.powerType) return false
+      if (filters.category  && p.category !== filters.category)          return false
+      if (priceRange.key !== 'any') {
+        const price = p.price || 0
+        if (price < (priceRange.min || 0))                                return false
+        if (priceRange.max !== Infinity && price > priceRange.max)        return false
+      }
+      if (hoursRange.key !== 'any') {
+        const hrs = p.operatingHours || 0
+        if (hoursRange.min && hrs < hoursRange.min)                       return false
+        if (hoursRange.max !== Infinity && hrs > hoursRange.max)          return false
+      }
+      if (filters.minYear && (p.year || 0) < filters.minYear)            return false
+      return true
     })
-
-    // Hours min filter
-    if (hoursRange.min) result = result.filter(p => (p.operatingHours || 0) >= hoursRange.min)
 
     if (sort === 'priceAsc')   result.sort((a, b) => (a.price || 0) - (b.price || 0))
     if (sort === 'priceDesc')  result.sort((a, b) => (b.price || 0) - (a.price || 0))
     if (sort === 'hoursAsc')   result.sort((a, b) => (a.operatingHours || 0) - (b.operatingHours || 0))
     if (sort === 'yearDesc')   result.sort((a, b) => (b.year || 0) - (a.year || 0))
-    if (sort === 'default')    result.sort((a, b) => b.isFeatured - a.isFeatured)
+    if (sort === 'default')    result.sort((a, b) => (b.isFeatured ? 1 : 0) - (a.isFeatured ? 1 : 0))
 
     return result
-  }, [filters, sort])
+  }, [usedProducts, filters, sort])
 
-  const total = useMemo(() => getUsedProducts().length, [])
-  const counts = { total, filtered: filtered.length }
+  const counts = { total: usedProducts.length, filtered: filtered.length }
+
+  if (loading) return (
+    <div className="min-h-screen bg-gray-50 pt-28 flex items-center justify-center">
+      <div className="text-gold-600 font-heading tracking-widest animate-pulse">กำลังโหลด...</div>
+    </div>
+  )
 
   const whyItems = [
     { icon: '🔍', title: u.why1Title, desc: u.why1Desc },
@@ -275,7 +288,7 @@ export default function UsedPage() {
             {/* Stats */}
             <div className="flex gap-6">
               <div className="text-center">
-                <div className="font-display text-3xl text-gold-400">{total}</div>
+                <div className="font-display text-3xl text-gold-400">{counts.total}</div>
                 <div className="font-body text-industrial-500 text-xs">{lang === 'th' ? 'คันในสต็อก' : 'Units in Stock'}</div>
               </div>
               <div className="text-center">
