@@ -5,26 +5,13 @@ import { companyInfo } from '../data/mockData'
 import { getProductById } from '../data/products'
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Line Notify helper
-// LINE_NOTIFY_TOKEN ใส่ใน .env  →  VITE_LINE_NOTIFY_TOKEN=xxxxx
-// ใช้ CORS proxy เพราะ Line Notify ไม่อนุญาต direct browser request
+// Line OA — ส่งผ่าน Vercel Serverless Function /api/notify
 // ─────────────────────────────────────────────────────────────────────────────
-const LINE_TOKEN = import.meta.env.VITE_LINE_NOTIFY_TOKEN || ''
-const CORS_PROXY = 'https://corsproxy.io/?'
-
-async function sendLineNotify(message) {
-  if (!LINE_TOKEN) {
-    console.warn('VITE_LINE_NOTIFY_TOKEN not set — skipping Line Notify')
-    return { ok: true, mock: true }
-  }
-  const url = CORS_PROXY + encodeURIComponent('https://notify-api.line.me/api/notify')
-  const res = await fetch(url, {
+async function sendLineMessage(message) {
+  const res = await fetch('/api/notify', {
     method: 'POST',
-    headers: {
-      Authorization: `Bearer ${LINE_TOKEN}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body: new URLSearchParams({ message }),
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message }),
   })
   return res
 }
@@ -101,7 +88,7 @@ export default function ContactPage() {
     setStatus('sending')
     try {
       const message = buildMessage(form, preProduct, lang)
-      const res = await sendLineNotify(message)
+      const res = await sendLineMessage(message)
       if (res.ok) {
         setStatus('success')
         setForm({ name: '', phone: '', company: '', lineId: '', interest: '', message: '' })
