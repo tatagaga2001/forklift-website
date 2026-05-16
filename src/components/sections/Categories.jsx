@@ -1,6 +1,17 @@
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../../context/LanguageContext'
 
+// Category slug mapping — ตรงกับ CATEGORIES ใน products.js
+const categorySlugs = [
+  'engine_cb',
+  'electric_cb',
+  'reach_truck',
+  'order_picker',
+  'hand_lift',
+  'tow_tractor',
+  'battery',
+]
+
 // SVG icons for each category
 const categoryIcons = [
   // Engine Forklift
@@ -148,8 +159,12 @@ export default function Categories() {
                 </svg>
               </div>
 
-              {/* Link overlay */}
-              <Link to="/products" className="absolute inset-0" aria-label={item.name} />
+              {/* Link overlay — ลิงก์ไปหน้าสินค้า filter ตามประเภท */}
+              <Link
+                to={`/products?category=${categorySlugs[i] || ''}`}
+                className="absolute inset-0"
+                aria-label={item.name}
+              />
 
               {/* Bottom gold line on hover */}
               <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gold-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />

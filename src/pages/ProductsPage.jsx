@@ -1,5 +1,6 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { useLanguage } from '../context/LanguageContext'
+import { useSearchParams } from 'react-router-dom'
 import { useProducts } from '../hooks/useProducts'
 import { categoryMeta, CATEGORIES } from '../data/products'
 import ProductCard from '../components/products/ProductCard'
@@ -14,17 +15,25 @@ const DEFAULT_FILTERS = {
   mastType: '',
 }
 
-const SORT_OPTIONS = ['default', 'priceAsc', 'priceDesc', 'capacity']
-
 export default function ProductsPage() {
   const { t, lang } = useLanguage()
   const p = t.products
+  const [searchParams] = useSearchParams()
 
   const { data: products, loading } = useProducts()
 
-  const [filters, setFilters] = useState(DEFAULT_FILTERS)
+  const [filters, setFilters] = useState({
+    ...DEFAULT_FILTERS,
+    category: searchParams.get('category') || '',
+  })
   const [sort, setSort] = useState('default')
   const [drawerOpen, setDrawerOpen] = useState(false)
+
+  // sync ถ้า URL เปลี่ยน
+  useEffect(() => {
+    const cat = searchParams.get('category') || ''
+    setFilters(f => ({ ...f, category: cat }))
+  }, [searchParams])
 
   // Apply filters
   const filtered = useMemo(() => {
