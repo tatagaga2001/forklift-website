@@ -147,12 +147,6 @@ export default function ContactPage() {
                 </div>
               )}
 
-              {/* Line Notify note */}
-              {LINE_TOKEN && (
-                <div className="flex items-center gap-2 bg-green-50 border border-green-200 px-4 py-3 mb-6 text-sm font-body text-green-700">
-                  <span>💬</span> {c.lineNotifyNote}
-                </div>
-              )}
 
               {/* Success */}
               {status === 'success' && (
